@@ -20,8 +20,10 @@
 //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
 import java.util.List;
 import java.util.Scanner;
-//import java.io.FileInputStream;
 
+import model.registrador.Registrador;
+//import java.io.FileInputStream;
+/*
 import model.aluno.*;
 import model.emprestimo.Emprestimo;
 
@@ -37,10 +39,10 @@ import model.livro.*;
 import facade.BibliotecaUniversidade;
 import facade.BibliotecaException;
 
-
+ */
 class App {
         //chamada de biblioteca
-    private static BibliotecaUniversidade facade;
+    //private static BibliotecaUniversidade facade;
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -61,19 +63,18 @@ class App {
          * ainda não tenha sido criada.
          * */
         
-            facade = BibliotecaUniversidade.getInstance();
+            //facade = BibliotecaUniversidade.getInstance();
 
-            cria_dados_testes();//o método que cria dados testes está no final.
+           // cria_dados_testes();//o método que cria dados testes está no final.
 
             int opcao;
             do{
                 limpaTela();
-                System.out.println("    MENU PRINCIPAL");
+                System.out.println("    project Kaiesi");
                 System.out.println("========================");
-                System.out.println("<1> Cadastrar Aluno");
-                System.out.println("<2> Cadastrar Livros");
-                System.out.println("<3> Cadastrar Exemplar");
-                System.out.println("<4> Emprestimos");
+                System.out.println("<1> Data path");
+                System.out.println("<2> Microprogama memory");
+                System.out.println("<3> Main memory");
                 System.out.println("<0> Sair");
                 System.out.printf("Escolha uma opcão:");
 
@@ -86,30 +87,17 @@ class App {
                 }
 
                 switch (opcao) {
-                    case 0: 
-                        limpaTela();
-                        break;
-                    case 1:
-                        cadastro_de_alunos();
-                        break;
-                    case 2:
-                        cadastro_de_livro();
-                        break;
-                    case 3: 
-                        cadastro_de_exemplar();
-                        break;
-                    case 4: 
-                        cadastrar_emprestimos(); 
-                        break;
-                
-                    default:
-                        break;
+                    case 0: limpaTela(); break;
+                    case 1: data_path(); break;
+                    //case 2: cadastro_de_livro(); break;
+                    //case 3: cadastro_de_exemplar(); break;
+                    default: break;
                 }
                 
             }while(opcao != 0);
 
            //esse chamada de saída, faz com que o programa saia e salve os dados
-           facade.exit();
+           //facade.exit();
             
         } catch (Exception e) {
             System.err.println("Erro ao carregar dados");
@@ -125,6 +113,18 @@ class App {
         }
     }
 
+    private static void data_path(){
+        Registrador registrador = facade.projetokaiesi();
+        limpaTela();
+        System.out.println("    Register Bank");
+        System.out.println("========================");
+        System.out.println(Registr"");
+        System.out.println("<2> Microprogama memory");
+        System.out.println("<3> Main memory");
+        System.out.println("<0> Sair");
+        System.out.printf("Escolha uma opcão:");
+
+    }
 
   
 
@@ -135,7 +135,7 @@ class App {
     //parte destinada para dados de teste
     //Está adicionando apenas Usuário
     
-
+/*
     private static void cria_dados_testes(){
 
         try {
@@ -187,4 +187,5 @@ class App {
             System.out.println(ex.getLocalizedMessage());
         }
     }
+     */
 }

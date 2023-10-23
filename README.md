@@ -1,18 +1,18 @@
-## Getting Started
+## PROJETO KAIESI
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Apresento a vocês o pejeto que tenta imitar o funcionamento do "K&S"
+programa que simula o funcionamento de um computador, contendo nele, 
+uma unidade lógica e aritmética(ULA), Register Bank(banco de resgistro), mémoria de armazenamento de dados e uma mémoria de microprogramas, o "K&S" foi apresentado pelo professor da universidade federal do oeste do pará prof. Cássio.
 
-## Folder Structure
+## Estrutura Principal
 
-The workspace contains two folders by default, where:
+ignorem as as demais pastas, foquem apenas nessa
 
 - `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+> Essa pasta contém o núcleo do projeto
+- `facade` fachada
+- `model` **
+- `repository` **
+- `app`
+> app não é uma pasta - é "saída" do programa
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
