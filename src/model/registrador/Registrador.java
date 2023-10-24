@@ -63,7 +63,37 @@ public class Registrador implements Serializable {
     this.regis_3 = regis_3;
   }
 
+  public void somar_registros(int regDestino, int regis1, int regis2) {
+    int valor = regis1 + regis2;
+    select_reg(regDestino, valor);
+}
 
+
+  public void sub_registros(int regDestino, int regis1, int regis2){
+    int valor = regis1 - regis2;
+    select_reg(regis2, valor);
+  }
+
+  public void and_registros(int regDestino,int regis1, int regis2){
+    int valor = regis1 & regis2;
+    select_reg(regis2, valor);
+  }
+  public void or_registros(int regDestino,int regis1, int regis2){
+    int valor = regis1 | regis2;
+    select_reg(regis2, valor);
+  }
+
+public void select_reg(int regis_x, int valor) {
+    if (regis_x == 0) {
+        setRegis_0(valor);
+    } else if (regis_x == 1) {
+        setRegis_1(valor);
+    } else if (regis_x == 2) {
+        setRegis_2(valor);
+    } else if (regis_x == 3) {
+        setRegis_3(valor);
+    }
+}
 //talvez use para alguma peripecia aí
 /* 
   public String getId_aluno(){
