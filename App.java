@@ -1,3 +1,4 @@
+package app;
 /**
  * @author Lucas Balmant
  * 
@@ -18,43 +19,28 @@
  * **/
 
 //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
-import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
 
-import model.registrador.Registrador;
-//import java.io.FileInputStream;
-/*
-import model.aluno.*;
-import model.emprestimo.Emprestimo;
+//import facade.Projetokaiesi;
 
-import repository.RepositoryException;
-import repository.exemplar.ExemplarNaoCadastradoException;
-import repository.livro.LivroNaoCadastradoException;
-//import do exemplar
-import model.exemplar.*;
-import model.livro.*;
-//import repository.exemplar.*;
 
-//"fachada"
-import facade.BibliotecaUniversidade;
-import facade.BibliotecaException;
 
- */
 class App {
-        //chamada de biblioteca
-    //private static BibliotecaUniversidade facade;
-    private static Scanner scanner = new Scanner(System.in);
+        //chamada de Projetokaise
+        
+    //private static Projetokaiesi facade;
+     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         try {
-            System.out.println("Carregando o sistema...");
+            //System.out.println("Carregando o sistema...");
 
         //essa chamada aqui estava fazendo meu programa quebrar haha
         
         //Essa linha logo a baixo: 
         /* 
-         * Atribui á uma variável, uma intância da classe 'Biblioteca universidade' 
+         * Atribui á uma variável, uma intância da classe 'Projetokaise' 
          * por meio do método estático 'getIntance'
          * 
          * A classe implementa o padrão de designer 'Sigleton', que garante que exista
@@ -63,8 +49,8 @@ class App {
          * ainda não tenha sido criada.
          * */
         
-            //facade = BibliotecaUniversidade.getInstance();
-
+    
+            //facade = Projetokaiesi.getInstance();
            // cria_dados_testes();//o método que cria dados testes está no final.
 
             int opcao;
@@ -113,12 +99,12 @@ class App {
         }
     }
 
+
     private static void data_path(){
-        Registrador registrador = facade.projetokaiesi();
+        //Registrador registrador = facade.projetokaiesi();
         limpaTela();
         System.out.println("    Register Bank");
         System.out.println("========================");
-        System.out.println(Registr"");
         System.out.println("<2> Microprogama memory");
         System.out.println("<3> Main memory");
         System.out.println("<0> Sair");
@@ -128,64 +114,4 @@ class App {
 
   
 
-    //fim das linhas
-
-     
-
-    //parte destinada para dados de teste
-    //Está adicionando apenas Usuário
-    
-/*
-    private static void cria_dados_testes(){
-
-        try {
-            facade.inserir_aluno(new Aluno("Lucas Balmant", "111.111.111-11", "20230708", "Rua Bom Jardim", "99999999999"));
-            facade.inserir_aluno(new Aluno("Peter Parker", "2", "20230709", "Nova York", "22222222222"));
-
-            //dados de acesso rápido
-            facade.inserir_aluno(new Aluno("Minato ", "1", "2","mundo", "4"));
-
-            facade.inserir_livro(new Livro("Berserk", "Kentaro","fantasy"));
-            facade.inserir_livro(new Livro("A arte", "Minato","aventura"));
-            facade.inserir_livro(new Livro("Olho de Vidro", "Tales", "Horror"));
-            facade.inserir_livro(new Livro("Vingadores","Marvel","comedia"));
-
-
-            //inserir as informações de livro
-            Livro livro = facade.buscar_Livro("1");
-            Livro livro2 = facade.buscar_Livro("2");
-            Livro livro3 = facade.buscar_Livro("3");
-            Livro livro4 = facade.buscar_Livro("4");
-
-            
-            facade.inserir_exemplar(new Exemplar(livro, true, true));
-
-            facade.inserir_exemplar(new Exemplar(livro2, true, false));
-
-            facade.inserir_exemplar(new Exemplar(livro3, true,false));
-
-            facade.inserir_exemplar(new Exemplar(livro4, true, false));
-
-            Aluno aluno = facade.buscar_Aluno("111.111.111-11");
-
-            Aluno aluno2 = facade.buscar_Aluno("2");
-
-            Exemplar exemplar1 = facade.buscar_Exemplar("1");
-
-            Exemplar exemplar2 = facade.buscar_Exemplar("2");
-
-
-            facade.inserir_novo_emprestimo(new Emprestimo(aluno, exemplar1 ));
-
-            facade.inserir_novo_emprestimo(new Emprestimo(aluno2, exemplar2));
-
-            //dados de teste  de exemplar2
-            
-            // biblioteca.inserir_exemplar(new Exemplar("macacos voadores", "Jhony bravo", "Fantasia", 02, true, null));
-            //biblioteca.inserir_exemplar(new Exemplar("Pantera ", "Michael Rusber", "Terror", 03, true, null));
-        } catch (RepositoryException ex) {
-            System.out.println(ex.getLocalizedMessage());
-        }
-    }
-     */
 }
