@@ -38,7 +38,7 @@ class App {
      private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        int opcao;
         try {
             //System.out.println("Carregando o sistema...");
 
@@ -59,7 +59,7 @@ class App {
             //facade = Projetokaiesi.getInstance();
            // cria_dados_testes();//o m�todo que cria dados testes est� no final.
 
-            int opcao;
+            /*==>Star menu<==*/
             do{
                 limpaTela();
                 System.out.println("    project Kaiesi");
@@ -97,6 +97,7 @@ class App {
         }
         System.out.println("Programa terminado");
     }
+    /*==>End Menu<==*/
 
     //Esse m�todo n�o limpa a tela, ele somente  imprime v�rios espa�os na tela.
         private static void limpaTela(){ 
@@ -110,6 +111,7 @@ class App {
          *incluindo a chamada especifica de cada um; 
         */
         private static void data_path(){
+            int opcao;
             //Registrador registrador = facade.projetokaiesi();
             try {
                 do{
@@ -126,7 +128,7 @@ class App {
 
                 try{
                 
-                opcao = Integer.valueOf(scanner.nextLine());
+                    opcao = Integer.valueOf(scanner.nextLine());
 
                 } catch(Exception e){
                     opcao = 0;
@@ -135,8 +137,8 @@ class App {
                 switch(opcao){ // ajustar para chamar o metodo que add no respectivo register
                     case 0: limpaTela(); break;
                     case 1: data_path(); break;
-                    case 2: cadastro_de_livro(); break;
-                    case 3: cadastro_de_exemplar(); break;
+                    //case 2: cadastro_de_livro(); break;
+                    //case 3: cadastro_de_exemplar(); break;
                     default: break;
                 }
                 }while(opcao!=0);
@@ -148,6 +150,7 @@ class App {
         }
 
         private static void register_0(){
+            int opcao;
             try{
                 do{
                 limpaTela();
@@ -270,7 +273,7 @@ class App {
         /*==>End Front registradores<== */
         
         /*==>Star Front Alu(ULA)<== */
-        private static void ALU_ULA(){
+        /*private static void ALU_ULA(){
             //Registrador registrador = facade.projetokaiesi();
             try {
                 do{
@@ -307,6 +310,126 @@ class App {
             }
             System.out.println("Programa terminado");
         }
+        private static void A_mais_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '0' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o metódo data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+
+        private static void A_menos_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '1' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o metódo data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+
+        private static void A_and_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '2' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o metódo data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                
+                }while (opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+        private static void A_our_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    ALU(ULA)");
+                System.out.println("    '3' ");
+                System.out.println("    =============");
+                System.out.println("    <0>  ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o metódo data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+    
+                }while(opcao!=0);
+
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }*/
 
 }
 
