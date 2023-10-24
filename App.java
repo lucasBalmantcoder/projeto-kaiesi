@@ -1,27 +1,33 @@
-package app;
+
 /**
  * @author Lucas Balmant
  * 
- * Esse projeto foi baseado no projeto do professo Enoque da Universidade federal do Oeste do Par·
+ * Esse projeto foi baseado no projeto do professo Enoque da Universidade federal do Oeste do ParÔøΩ
  * 
- * Nas primeiras versıes estava com problemas nas chamadas(acesso a dados do repositÛrio), alguns dos erros acredito que
+ * Nas primeiras versÔøΩes estava com problemas nas chamadas(acesso a dados do repositÔøΩrio), alguns dos erros acredito que
  * foram causados por conta de alguma incopatiblidade do java com vs code, ou  pode   ser
- * por conta de algum erro na prÛpria linguagem que eu desconheÁo, fiz algumas alteraÁıes para
+ * por conta de algum erro na prÔøΩpria linguagem que eu desconheÔøΩo, fiz algumas alteraÔøΩÔøΩes para
  * resolver isso, criei um novo projeto no vs code vazio e quando se faz isso, algumas   
- * algumas pastas s„o criadas autom·ticamente elas s„o:
+ * algumas pastas sÔøΩo criadas automÔøΩticamente elas sÔøΩo:
  * .vs code
  * bin
  * lib
  * src
  * -
- * Deppois copiei, todo o projeto para dentro da pasta src, isso È claro no novo projeto
- * e atÈ o momento todas as minhas chamadas est„o funcionando perfeitamente.
+ * Deppois copiei, todo o projeto para dentro da pasta src, isso ÔøΩ claro no novo projeto
+ * e atÔøΩ o momento todas as minhas chamadas estÔøΩo funcionando perfeitamente.
  * **/
+/*
+ *Nota de @Igoquintino: adicionando o front-end da banco de registro, ainda n√£o completa
+ *Nota de @Igoquintino: adicionando tamb√©m parte n√£o compleeta da ALU(ULA)
+ *unidade l√≥gica aritmetica no Front-end de terminal
+*/
 
-//TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
-//import java.util.Scanner;
+ //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
+import java.util.Scanner;
 
 //import facade.Projetokaiesi;
+
 
 
 
@@ -32,7 +38,7 @@ class App {
      private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        int opcao;
         try {
             //System.out.println("Carregando o sistema...");
 
@@ -40,20 +46,20 @@ class App {
         
         //Essa linha logo a baixo: 
         /* 
-         * Atribui · uma vari·vel, uma int‚ncia da classe 'Projetokaise' 
-         * por meio do mÈtodo est·tico 'getIntance'
+         * Atribui ÔøΩ uma variÔøΩvel, uma intÔøΩncia da classe 'Projetokaise' 
+         * por meio do mÔøΩtodo estÔøΩtico 'getIntance'
          * 
-         * A classe implementa o padr„o de designer 'Sigleton', que garante que exista
-         * apenas uma int‚ncia dessa classe em todo o programa, o mÈtodo 'getInstance'
-         * È respons·vel por retornar essa ˙nica instancia existente ou cria--l· caso
-         * ainda n„o tenha sido criada.
+         * A classe implementa o padrÔøΩo de designer 'Sigleton', que garante que exista
+         * apenas uma intÔøΩncia dessa classe em todo o programa, o mÔøΩtodo 'getInstance'
+         * ÔøΩ responsÔøΩvel por retornar essa ÔøΩnica instancia existente ou cria--lÔøΩ caso
+         * ainda nÔøΩo tenha sido criada.
          * */
         
     
             //facade = Projetokaiesi.getInstance();
-           // cria_dados_testes();//o mÈtodo que cria dados testes est· no final.
+           // cria_dados_testes();//o mÔøΩtodo que cria dados testes estÔøΩ no final.
 
-            int opcao;
+            /*==>Star menu<==*/
             do{
                 limpaTela();
                 System.out.println("    project Kaiesi");
@@ -62,7 +68,7 @@ class App {
                 System.out.println("<2> Microprogama memory");
                 System.out.println("<3> Main memory");
                 System.out.println("<0> Sair");
-                System.out.printf("Escolha uma opc„o:");
+                System.out.printf("Escolha uma opcÔøΩo:");
 
                 try {
 
@@ -82,7 +88,7 @@ class App {
                 
             }while(opcao != 0);
 
-           //esse chamada de saÌda, faz com que o programa saia e salve os dados
+           //esse chamada de saÔøΩda, faz com que o programa saia e salve os dados
            //facade.exit();
             
         } catch (Exception e) {
@@ -91,27 +97,354 @@ class App {
         }
         System.out.println("Programa terminado");
     }
+    /*==>End Menu<==*/
 
-    //Esse mÈtodo n„o limpa a tela, ele somente  imprime v·rios espaÁos na tela.
-    private static void limpaTela(){ 
-        for(int i = 0; i < 50; i++) {
-            System.out.println();
+    //Esse mÔøΩtodo nÔøΩo limpa a tela, ele somente  imprime vÔøΩrios espaÔøΩos na tela.
+        private static void limpaTela(){ 
+            for(int i = 0; i < 50; i++) {
+                System.out.println();
+            }
         }
-    }
+        
+        
+        /*==>Start Front dos registradores<==
+         *incluindo a chamada especifica de cada um; 
+        */
+        private static void data_path(){
+            int opcao;
+            //Registrador registrador = facade.projetokaiesi();
+            try {
+                do{
+                limpaTela();
+                System.out.println("    Data Path");
+                System.out.println("    Register Bank");
+                System.out.println("========================");
+                System.out.println("<1> Register '0' ");
+                System.out.println("<2> Register '1' ");
+                System.out.println("<3> Register '2' ");
+                System.out.println("<4> Register '3' ");
+                System.out.println("<0> Sair ");
+                System.out.printf("Escolha uma opcÔøΩo:");
+
+                try{
+                
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // ajustar para chamar o metodo que add no respectivo register
+                    case 0: limpaTela(); break;
+                    case 1: data_path(); break;
+                    //case 2: cadastro_de_livro(); break;
+                    //case 3: cadastro_de_exemplar(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            } catch (Exception e) {
+                    System.err.println("Erro ao carregar dados");
+                    e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+        private static void register_0(){
+            int opcao;
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '0' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
 
 
-    private static void data_path(){
-        //Registrador registrador = facade.projetokaiesi();
-        limpaTela();
-        System.out.println("    Register Bank");
-        System.out.println("========================");
-        System.out.println("<2> Microprogama memory");
-        System.out.println("<3> Main memory");
-        System.out.println("<0> Sair");
-        System.out.printf("Escolha uma opc„o:");
+        private static void register_1(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '1' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
 
-    }
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
 
-  
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+
+        private static void register_2(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '2' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                
+                }while (opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+        private static void register_3(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '3' ");
+                System.out.println("    =============");
+                System.out.println("    <0>  ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+    
+                }while(opcao!=0);
+
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+        /*==>End Front registradores<== */
+        
+        /*==>Star Front Alu(ULA)<== */
+        /*private static void ALU_ULA(){
+            //Registrador registrador = facade.projetokaiesi();
+            try {
+                do{
+                limpaTela();
+                System.out.println("    ALU(ULA)");
+                System.out.println("    Alu Operation");
+                System.out.println("========================");
+                System.out.println("<1> A + B ");
+                System.out.println("<2> A - B ");
+                System.out.println("<3> A || B ");
+                System.out.println("<4> A & B");
+                System.out.println("<0> Voltar ");
+                System.out.printf("Escolha uma opcÔøΩo:");
+
+                try{
+                
+                opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // ajustar para chamar o metodo que add no respectivo register
+                    case 0: limpaTela(); break;
+                    case 1: data_path(); break;
+                    case 2: cadastro_de_livro(); break;
+                    case 3: cadastro_de_exemplar(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            } catch (Exception e) {
+                    System.err.println("Erro ao carregar dados");
+                    e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+        private static void A_mais_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '0' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+
+        private static void A_menos_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '1' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                }while(opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+
+        private static void A_and_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    Register Bank");
+                System.out.println("    Register '2' ");
+                System.out.println("    =============");
+                System.out.println("    <0> Voltar ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ //chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+                
+                }while (opcao!=0);
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }
+
+        private static void A_our_B(){
+            try{
+                do{
+                limpaTela();
+                System.out.println("    ALU(ULA)");
+                System.out.println("    '3' ");
+                System.out.println("    =============");
+                System.out.println("    <0>  ");
+
+                try{
+                    
+                    opcao = Integer.valueOf(scanner.nextLine());
+
+                } catch(Exception e){
+                    opcao = 0;
+                }
+
+                switch(opcao){ // chama o met√≥do data_path para escolher 
+                    case 0: limpaTela();data_path(); break;
+                    default: break;
+                }
+    
+                }while(opcao!=0);
+
+            }catch (Exception e) {
+                System.err.println("Erro ao carregar dados");
+                e.printStackTrace();
+            }
+            System.out.println("Programa terminado");
+        }*/
 
 }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

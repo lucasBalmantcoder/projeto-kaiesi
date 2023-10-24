@@ -12,8 +12,8 @@ public class Registrador implements Serializable {
   
   //private boolean bloqueado; vou fazer um m?todo para retorna se
   // ele est? ou n?o bloqueado
-
-
+  
+  
   public Registrador(int regis_0, int regis_1, int regis_2, int regis_3) {
     //this.id_aluno = id_aluno;
     this.regis_0 = regis_0;
@@ -21,8 +21,19 @@ public class Registrador implements Serializable {
     this.regis_2 = regis_2;
     this.regis_3 = regis_3;
   }
-
-
+  
+  public void select_reg(int regis_x, int valor) {
+      if (regis_x == 0) {
+          setRegis_0(valor);
+      } else if (regis_x == 1) {
+          setRegis_1(valor);
+      } else if (regis_x == 2) {
+          setRegis_2(valor);
+      } else if (regis_x == 3) {
+          setRegis_3(valor);
+      }
+  }
+  
   public String getId_registrador() {
     return this.id_registrador;
   }
@@ -83,18 +94,7 @@ public class Registrador implements Serializable {
     select_reg(regis2, valor);
   }
 
-public void select_reg(int regis_x, int valor) {
-    if (regis_x == 0) {
-        setRegis_0(valor);
-    } else if (regis_x == 1) {
-        setRegis_1(valor);
-    } else if (regis_x == 2) {
-        setRegis_2(valor);
-    } else if (regis_x == 3) {
-        setRegis_3(valor);
-    }
-}
-//talvez use para alguma peripecia aí
+//talvez use para alguma peripecia aï¿½
 /* 
   public String getId_aluno(){
     return this.id_aluno;
@@ -104,7 +104,7 @@ public void select_reg(int regis_x, int valor) {
   }
 
 
-  public String toString() {//não está sendo usada
+  public String toString() {//nï¿½o estï¿½ sendo usada
     return nome;
   }
 */
