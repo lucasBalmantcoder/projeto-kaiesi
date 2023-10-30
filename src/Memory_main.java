@@ -65,6 +65,25 @@ public class Memory_main implements Serializable {
         setM_4(0);
     }
 
+    /*Selecionar um slot de memória(endereço) */
+    public void select_mm(int mmDest, int valor){
+        if (mmDest == 0) {
+              setM_0(valor);
+          } else if (mmDest == 1) {
+              setM_1(valor);
+          } else if (mmDest == 2) {
+              setM_2(valor);
+          } else if (mmDest == 3) {
+              setM_3(valor);
+          } else if (mmDest == 4) {
+              setM_4(valor);
+          }
+    }
+    /*Remover (zerar) um slot de memória especifico*/
+    public void removeValue(int mmDestino) {
+        select_mm(mmDestino, 0);
+    }
+
     public int retornar_mm(int mm){
         int value = 0;
         switch (mm) {
