@@ -354,6 +354,7 @@ public class App {//teste qualquer coisa da vida caralho
         System.out.println("=====================================================");
     }
     
+    
     private static void microprograma_memory(){ /*menu microprograma*/
         limpaTela();
         String[] s = { "(+)", "(-)", "(and)", "(or)" };
@@ -362,10 +363,11 @@ public class App {//teste qualquer coisa da vida caralho
         System.out.printf("  R%d\t      R%d\t  %s\t\t\t\tR%d\tRW%d\n", reg.getA(), reg.getB(), s[reg.getSel()], reg.getC(),mm.getVar());
         System.out.println("========================================================================");
         int i = scanner.nextInt();
-    }
+    } 
     /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
 
     /*--> START FUNCOES DO MEMORY MAIN <--*/
+
     private static void add_mm() { /* Add valor em um edereco de memoria */
         System.out.print("Digite o valor a ser adicionado: ");
         int valorAdicionado = Integer.valueOf(scanner.nextLine());
