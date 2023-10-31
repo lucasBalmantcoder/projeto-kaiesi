@@ -24,7 +24,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 //import facade.Projetokaiesi;
 
-public class App {
+public class App {//teste
 
     // chamada de Projetokaise
     // private static Projetokaiesi facade;
