@@ -28,6 +28,7 @@ public class App {//teste qualquer coisa da vida caralho
 
     // chamada de Projetokaise
     // private static Projetokaiesi facade;
+    //new
     private static Scanner scanner = new Scanner(System.in);
     private static Registrador reg = new Registrador(20, 30, 50, 1);
     private static Memory_main mm = new Memory_main(5, 4, 3, 2, 0);
