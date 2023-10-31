@@ -19,8 +19,9 @@
  * **/
 
 //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
+import java.util.List;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 //import facade.Projetokaiesi;
 
 public class App {
@@ -30,6 +31,9 @@ public class App {
     private static Scanner scanner = new Scanner(System.in);
     private static Registrador reg = new Registrador(20, 30, 50, 1);
     private static Memory_main mm = new Memory_main(5, 4, 3, 2, 0);
+    
+    private List<Microprograma>lista_micro = new ArrayList<>();//lista de objetos
+
 
     public static void main(String[] args) {
         try {
