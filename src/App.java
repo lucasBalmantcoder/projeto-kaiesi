@@ -56,21 +56,12 @@ public class App {
                 }
 
                 switch (opcao) {
-                    case 0:
-                        limpaTela();
-                        break;
-                    case 1:
-                        data_path();
-                        break;
-                    // case 2: microprograma_memory(); break;
-                    case 3:
-                        main_memory();
-                        break;
-                    case 4:
-                        goto_ula();
-                        break;
-                    default:
-                        break;
+                    case 0: limpaTela(); break;
+                    case 1: data_path(); break;
+                    case 2: microprograma_memory(); break;
+                    case 3: main_memory(); break;
+                    case 4: goto_ula(); break;
+                    default: break;
                 }
 
             } while (opcao != 0);
@@ -207,34 +198,16 @@ public class App {
             }
 
             switch (opcao) {
-                case 1:/*--> start operation <--*/
-                    somar_regis();
-                    limpaTela();
-                    break;
-                case 2:
-                    sub_regis();
-                    limpaTela();
-                    break;
-                case 3:
-                    and_regis();
-                    limpaTela();
-                    break;
-                case 4:
-                    or_regis();
-                    limpaTela();
-                    break;/*--> end operation <--*/
-                case 5:
-                    data_path();/*atalho direto para Register Bank*/
-                    break;
-                case 6:
-                    select_c();/*Selecionar registrador para a saida do 'C bus'*/
-                    limpaTela();
-                    break;
-                case 0:
-                    menu_ini();/*Saida para o menu inicial*/
-                    break;
-                default:
-                    break;
+                /*--> start operation <--*/
+                case 1: somar_regis(); limpaTela(); break;
+                case 2: sub_regis(); limpaTela(); break;
+                case 3: and_regis(); limpaTela(); break;
+                case 4: or_regis(); limpaTela(); break;
+                /*--> end operation <--*/
+                case 5: data_path(); break;/*atalho direto para Register Bank*/
+                case 6: select_c(); limpaTela(); break;/*Selecionar registrador para a saida do 'C bus'*/
+                case 0: menu_ini(); break;/*Saida para o menu inicial*/
+                default: break;
             }
         } while (opcao != 0);
     }
@@ -314,33 +287,14 @@ public class App {
             }
 
             switch (opcao) {
-                case 1:
-                    add_mm(); /* add valor especifico no mm */
-                    break;
-                case 2:
-                    remove_mm();/* remover valor especifico no mm */
-                    break;
-                case 3:
-                    goto_ula();/* direto para ULA */
-                    limpaTela();
-                    break;
-                case 4:
-                    select_reg0_re1_reg2_reg3();/* Selecionar para onde vai o valor contido na id de memoria */
-                    limpaTela();
-                    break;
-                case 5:
-                    menu_ini();/*Saida para o menu inicial*/
-                    break;
-                case 6:
-                    select_c();
-                    limpaTela();
-                    break;
-                case 0:
-                    mm.remove_all();
-                    limpaTela();
-                    break;
-                default:
-                    break;
+                case 1: add_mm(); break; /* add valor especifico no mm */
+                case 2: remove_mm(); break; /* remover valor especifico no mm */
+                case 3: goto_ula(); limpaTela(); break;/* direto para ULA */
+                case 4: select_reg0_re1_reg2_reg3(); limpaTela(); break;/* Selecionar para onde vai o valor contido na id de memoria */
+                case 5: menu_ini(); break;/*Saida para o menu inicial*/
+                case 6: select_c(); limpaTela(); break;
+                case 0: mm.remove_all(); limpaTela(); break;
+                default: break;
             }
         } while (opcao != 5);
     }
@@ -387,8 +341,7 @@ public class App {
         info_regis();
 
     }
-    /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
-
+    
     private static void info_regis() { /*banco de registro, info de registradores, ele atualiza de acordo com que tem*/
         System.out.printf("R0: %d \n", reg.getRegis_0());
         System.out.printf("R1: %d \n", reg.getRegis_1());
@@ -396,6 +349,17 @@ public class App {
         System.out.printf("R3: %d \n", reg.getRegis_3());
         System.out.println("=====================================================");
     }
+    
+    private static void microprograma_memory(){ /*menu microprograma*/
+        limpaTela();
+        String[] s = { "(+)", "(-)", "(and)", "(or)" };
+        System.out.println("========================================================================");
+        System.out.println("A Addr:     B Addr:     ALU Op:     Switch Pos:     C Addr:     RW Addr: ");
+        System.out.printf("  R%d\t      R%d\t  %s\t\t\t\tR%d\tRW%d\n", reg.getA(), reg.getB(), s[reg.getSel()], reg.getC(),mm.getVar());
+        System.out.println("========================================================================");
+        int i = scanner.nextInt();
+    }
+    /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
 
     /*--> START FUNCOES DO MEMORY MAIN <--*/
     private static void add_mm() { /* Add valor em um edereco de memoria */
@@ -421,6 +385,7 @@ public class App {
             System.out.println("Digite M0(0), M1(1), M2(2) ou M3(3), M4(4): ");
             var = Integer.valueOf(scanner.nextLine());
         }while(var < 0 || var > 4);
+        mm.setVar(var);
             int r = mm.retornar_mm(var);
             System.out.print("Enter which registrar (0-3): ");
             int mm_to_reg = Integer.valueOf(scanner.nextLine());

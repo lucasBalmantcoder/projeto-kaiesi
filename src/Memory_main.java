@@ -6,7 +6,7 @@ public class Memory_main implements Serializable {
     private int m_2 = 0;
     private int m_3 = 0;
     private int m_4 = 0;
-
+    private int var = 0;
 
     public Memory_main(int m_0, int m_1, int m_2, int m_3, int m_4) {
         this.m_0 = m_0;
@@ -56,6 +56,15 @@ public class Memory_main implements Serializable {
     public void setM_4(int m_4) {
         this.m_4 = m_4;
     }
+    
+     public int getVar() {
+        return var;
+    }
+
+    public void setVar(int var) {
+        this.var = var;
+    }
+    
 
     public void remove_all(){//zera todos os elementos de mm
         setM_0(0);
@@ -99,8 +108,8 @@ public class Memory_main implements Serializable {
         return value;
 
     }
-
-
-
+    public int retorno_mm(int var) {
+        
+    }
 
 }

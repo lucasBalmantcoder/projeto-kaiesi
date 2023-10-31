@@ -1,5 +1,5 @@
 import java.io.Serializable;
-//versão ninbus
+//versao ninbus
 public class Microprograma implements Serializable {
 
     private int[] a_addr = new int[1];
@@ -7,7 +7,6 @@ public class Microprograma implements Serializable {
     private int[] c_addr = new int[1];
     private int[] alu_op = new int[1];//{0,1}
     private int[] s_pos = new int[3]; //{0,0,0,0}
-    
     //int a[3] = {0};
 
 
