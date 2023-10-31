@@ -2,20 +2,20 @@
  * @author Lucas Balmant
  * @author Igo Quintino
  * 
- * Esse projeto foi baseado no projeto do professo Enoque da Universidade federal do Oeste do Pará
+ * Esse projeto foi baseado no projeto do professo Enoque da Universidade federal do Oeste do Para
  * 
- * Nas primeiras versões estava com problemas nas chamadas(acesso a dados do repositório), alguns dos erros acredito que
+ * Nas primeiras versoes estava com problemas nas chamadas(acesso a dados do repositorio), alguns dos erros acredito que
  * foram causados por conta de alguma incopatiblidade do java com vs code, ou  pode   ser
- * por conta de algum erro na própria linguagem que eu desconheço, fiz algumas alterações para
+ * por conta de algum erro na propria linguagem que eu desconheco, fiz algumas alteracoes para
  * resolver isso, criei um novo projeto no vs code vazio e quando se faz isso, algumas   
- * algumas pastas são criadas automáticamente elas são:
+ * algumas pastas sao criadas automaticamente elas sao:
  * .vs code
  * bin
  * lib
  * src
  * -
- * Deppois copiei, todo o projeto para dentro da pasta src, isso é claro no novo projeto
- * e até o momento todas as minhas chamadas estão funcionando perfeitamente.
+ * Deppois copiei, todo o projeto para dentro da pasta src, isso e claro no novo projeto
+ * e ate o momento todas as minhas chamadas estao funcionando perfeitamente.
  * **/
 
 //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
@@ -43,8 +43,9 @@ public class App {
                 System.out.println("<1> Data path");
                 System.out.println("<2> Microprogama memory");
                 System.out.println("<3> Main memory");
+                System.out.println("<4> ULA(ALU)");
                 System.out.println("<0> Sair");
-                System.out.printf("Escolha uma opção:");
+                System.out.printf("Escolha uma opcao:");
 
                 try {
 
@@ -65,6 +66,9 @@ public class App {
                     case 3:
                         main_memory();
                         break;
+                    case 4:
+                        goto_ula();
+                        break;
                     default:
                         break;
                 }
@@ -78,7 +82,7 @@ public class App {
         System.out.println("Programa terminado");
     }
 
-    // Esse método não limpa a tela, ele so imprime vários espaços na tela.
+    // Esse metodo nao limpa a tela, ele so imprime varios espacos na tela.
     private static void limpaTela() {
         for (int i = 0; i < 50; i++) {
             System.out.println();
@@ -104,7 +108,7 @@ public class App {
                 case 1:
                     limpaTela();// vai limpar a tela
                     menu_ini();// vai fazer atializar o menu de acordo com as confis do swc
-                    // Adicionar valor - faz chamada de método lá em registrador
+                    // Adicionar valor - faz chamada de metodo la em registrador
                     System.out.print("Digite o valor a ser adicionado: ");
                     int valorAdicionado = Integer.valueOf(scanner.nextLine());
                     System.out.print("Digite o registrador de destino (0-3): ");
@@ -117,7 +121,7 @@ public class App {
                     limpaTela();// vai limpar a tela
                     menu_ini();// vai fazer atializar o menu de acordo com as confis do swc
 
-                    // Remover valor usando removeValue() - faz chamada de método lá em registrador
+                    // Remover valor usando removeValue() - faz chamada de metodo la em registrador
                     System.out.print("Digite o id do registrador (0-3) para remover o valor: ");
                     int regDestinoRemocao = Integer.valueOf(scanner.nextLine());
                     reg.removeValue(regDestinoRemocao);
@@ -150,7 +154,7 @@ public class App {
     }
 
     /*
-     * Método para manipulaçãoo de valores, ou seja, que vai ser setado em 'A' ou em
+     * Metodo para manipulacao de valores, ou seja, que vai ser setado em 'A' ou em
      * 'B'
      */
     private static void select_a_b() {
@@ -178,7 +182,8 @@ public class App {
         } while (var < 0 || var > 1);
     }
 
-    private static void goto_ula() {// unidade lógica e aritmética
+    /*--> START UlA(ALU) FUNCTION <--*/
+    private static void goto_ula() {// unidade logica e aritmatica
         limpaTela();
         int opcao;
         String[] s = { "(+)", "(-)", "(and)", "(or)" };
@@ -202,7 +207,7 @@ public class App {
             }
 
             switch (opcao) {
-                case 1:
+                case 1:/*--> start operation <--*/
                     somar_regis();
                     limpaTela();
                     break;
@@ -217,22 +222,23 @@ public class App {
                 case 4:
                     or_regis();
                     limpaTela();
-                    break;
+                    break;/*--> end operation <--*/
                 case 5:
-                    data_path();
+                    data_path();/*atalho direto para Register Bank*/
                     break;
                 case 6:
-                    select_c();
+                    select_c();/*Selecionar registrador para a saida do 'C bus'*/
                     limpaTela();
                     break;
                 case 0:
+                    menu_ini();/*Saida para o menu inicial*/
                     break;
                 default:
                     break;
             }
-        } while (opcao != 6);
+        } while (opcao != 0);
     }
-
+    /*Start funcoes das operacoes da ULA(ALU)*/
     private static void somar_regis() {
         int i = 0;
         reg.setSel(i);
@@ -281,8 +287,10 @@ public class App {
             reg.setC(var_c);
         } while (var_c < 0 || var_c > 3);
     }
+    /*End funcao das operacoes da ULA(ALU)*/
+    /*--> END ULA(ALU) FUNCTION <--*/
 
-    /*MAIN MEMÓRIO COMPLETO, PRFV, VERIFIQUE OS COMENTARIOS DA FUNÇÕES*/
+    /*--> START MAIN MEMORY COMPLETO, PRFV, VERIFIQUE OS COMENTARIOS DA FUNCOES <--*/
     private static void main_memory() {
         limpaTela();
         int opcao;
@@ -317,7 +325,7 @@ public class App {
                     limpaTela();
                     break;
                 case 4:
-                    select_reg0_re1_reg2_reg3();/* Selecionar para onde vai o valor contido na id de memória */
+                    select_reg0_re1_reg2_reg3();/* Selecionar para onde vai o valor contido na id de memoria */
                     limpaTela();
                     break;
                 case 5:
@@ -336,29 +344,30 @@ public class App {
             }
         } while (opcao != 5);
     }
+    /*--> END MEMORY MAIN FUNCTION <--*/
 
-    /* START MENUS DO DAS FUNÇÕES PRINCIPAIS */
+    /*--> START MENUS DO DAS FUNCOES PRINCIPAIS <--*/
 
-    private static void confis_01() { /*Banco de Registro, opções de escolhas, apenas print*/
+    private static void confis_01() { /*Banco de Registro, opcoes de escolhas, apenas print*/
         System.out.println("Press <1> to add values  Press <2> to remove values");
         System.out.println("Press <3> go to ULA      Press <0> to remove all");
         System.out.println("Press <4> select A e B   Press <5> to exit");
-        System.out.printf("Escolha uma opção:");
+        System.out.printf("Escolha uma opcao:");
     }
 
-    private static void confis_02() {/*ULA(ALU), opção de escolhas, apenas print*/
+    private static void confis_02() {/*ULA(ALU), opcoes de escolhas, apenas print*/
         System.out.println("Press <1> A + B            Press <2> A - B");
         System.out.println("Press <3> A & B            Press <4> A or B");
         System.out.println("Press <5> go to RB         Press <0> to exit");
         System.out.println("Press <6> select c regis");
-        System.out.printf("Escolha uma opção:");
+        System.out.printf("Escolha uma opcao:");
     }
 
-    private static void mm_confis_01() { /*memória main, as opções de escolha, apenas print*/
+    private static void mm_confis_01() { /*memoria main, as opcoes de escolha, apenas print*/
         System.out.println("Press <1> to add values      Press <2> to remove values");
         System.out.println("Press <3> go to ULA          Press <0> to remove all");
         System.out.println("Press <4> select registers   Press <5> to exit");
-        System.out.printf("Escolha uma opção:");
+        System.out.printf("Escolha uma opcao:");
     }
 
     private static void menu_ini() { /*banco de registro, ele atualiza de acordo com que tem*/
@@ -378,7 +387,7 @@ public class App {
         info_regis();
 
     }
-    /*END MENUS DO DAS FUNÇÕES PRINCIPAIS*/
+    /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
 
     private static void info_regis() { /*banco de registro, info de registradores, ele atualiza de acordo com que tem*/
         System.out.printf("R0: %d \n", reg.getRegis_0());
@@ -388,8 +397,8 @@ public class App {
         System.out.println("=====================================================");
     }
 
-    /*START FUNÇÕES DO MEMORY MAIN*/
-    private static void add_mm() { /* Add valor em um edereço de memória */
+    /*--> START FUNCOES DO MEMORY MAIN <--*/
+    private static void add_mm() { /* Add valor em um edereco de memoria */
         System.out.print("Digite o valor a ser adicionado: ");
         int valorAdicionado = Integer.valueOf(scanner.nextLine());
         System.out.print("Enter the memory address (0-4): ");
@@ -398,7 +407,7 @@ public class App {
         limpaTela();
     }
 
-    private static void remove_mm() {/* Remover valor de algum edereço de memória */
+    private static void remove_mm() {/* Remover valor de algum edereco de memoria */
 
         System.out.print("Enter the memory address id (0-4) to remove the value: ");
         int mmDestinoRemocao = Integer.valueOf(scanner.nextLine());
@@ -406,7 +415,7 @@ public class App {
         limpaTela();
     }
 
-    private static void select_reg0_re1_reg2_reg3() {/*Selecionar o registrador para setar o valor de (id) memória*/
+    private static void select_reg0_re1_reg2_reg3() {/*Selecionar o registrador para setar o valor de (id) memoria*/
         int var;
         do{
             System.out.println("Digite M0(0), M1(1), M2(2) ou M3(3), M4(4): ");
@@ -417,5 +426,5 @@ public class App {
             int mm_to_reg = Integer.valueOf(scanner.nextLine());
             reg.select_reg(mm_to_reg, r);
     }
-    /*END FUNÇÕES MEMORY MAIN*/
+    /*--> END FUNCOES MEMORY MAIN <--*/
 }
