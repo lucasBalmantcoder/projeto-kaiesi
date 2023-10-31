@@ -145,6 +145,10 @@ public void select_reg(int regis_x, int valor) {
     }
 }
 
+//z = mm.select_regis_mm(b);
+//reg.select_reg(y,z);
+
+
 //retornar um resgitrador que um usuario escolher
 public int retonar_reg(int regis) {
     int a = 0;
