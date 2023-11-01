@@ -31,6 +31,7 @@ public class App {//teste qualquer coisa da vida caralho
 
     // chamada de Projetokaise
     // private static Projetokaiesi facade;
+    //teste
 
     private static Scanner scanner = new Scanner(System.in);
     private static Registrador reg = new Registrador(20, 30, 50, 1);
@@ -39,7 +40,6 @@ public class App {//teste qualquer coisa da vida caralho
     
     private static List<Microprograma>microprogramas = new ArrayList<>();
     private static idGeneratorStrategy index = new SequencialContaIdGeneratorStrategy();
-
 
     public static void main(String[] args)  {
 
@@ -91,19 +91,26 @@ public class App {//teste qualquer coisa da vida caralho
         System.out.println("Programa terminado");
     }
 
-    private static void inserir_micro_p(Microprograma microprograma) throws MicroprogramaJaCadastradoException {
-            if (microprograma.getId_micro() == null) {
-                microprograma.setId_micro(index.nextId());
-            }
-        
-            try {
-                buscar_micro_programa(microprograma.getId_micro());
-                throw new MicroprogramaJaCadastradoException();
-                
-            } catch (MicroprogramaNaoCadastradoException e) {
-                microprogramas.add(microprograma);
-            }
-        }
+    
+
+private static void inserir_micro_p(Microprograma microprograma) throws MicroprogramaJaCadastradoException {
+
+    if (microprogramas.size() >= 3) {
+        System.out.println("Limite de 6 elementos atingido. NÃ£o Ã© possÃ­vel adicionar mais elementos.");
+        return; // Saia do mÃ©todo, pois o limite foi atingido
+    }
+
+    if (microprograma.getId_micro() == null) {
+        microprograma.setId_micro(index.nextId());
+    }
+
+    try {
+        buscar_micro_programa(microprograma.getId_micro());
+        throw new MicroprogramaJaCadastradoException();
+    } catch (MicroprogramaNaoCadastradoException e) {
+        microprogramas.add(microprograma);
+    }
+}
     
         private static Microprograma buscar_micro_programa(String id_microprograma) throws MicroprogramaNaoCadastradoException {
             for (Microprograma microprograma : microprogramas) {
@@ -118,15 +125,15 @@ public class App {//teste qualquer coisa da vida caralho
 
         
         private static void removerMaiorIndice() {
-            int maiorIndice = -1; // Inicializa com um valor impossível de ser um índice válido
+            int maiorIndice = -1; // Inicializa com um valor impossÃ­vel de ser um Ã­ndice vÃ¡lido
             Microprograma microprogramaComMaiorIndice = null;
         
             for (Microprograma microprograma : microprogramas) {
                 String idMicro = microprograma.getId_micro();
                 if (idMicro != null) {
-                    int indice = Integer.parseInt(idMicro); // Converte o ID para um número
+                    int indice = Integer.parseInt(idMicro); // Converte o ID para um nÃºmero
                     if (indice > maiorIndice) {
-                        maiorIndice = indice; // Atualiza o maior índice encontrado
+                        maiorIndice = indice; // Atualiza o maior Ã­ndice encontrado
                         microprogramaComMaiorIndice = microprograma; // Atualiza o Microprograma correspondente
                     }
                 }
@@ -134,7 +141,7 @@ public class App {//teste qualquer coisa da vida caralho
         
             if (microprogramaComMaiorIndice != null) {
                 microprogramaComMaiorIndice.setId_micro(index.antId());
-                microprogramas.remove(microprogramaComMaiorIndice); // Remove o Microprograma com o maior índice
+                microprogramas.remove(microprogramaComMaiorIndice); // Remove o Microprograma com o maior Ã­ndice
                 
             }
         }
@@ -145,7 +152,7 @@ public class App {//teste qualquer coisa da vida caralho
                 if (idMicro != null) {
                     int indice = Integer.parseInt(idMicro);
                     if (indice >= 0) {
-                        microprograma.setId_micro(index.antId()); // Define o índice como zero
+                        microprograma.setId_micro(index.antId()); // Define o Ã­ndice como zero
                     }
                 }
             }
@@ -439,6 +446,7 @@ public class App {//teste qualquer coisa da vida caralho
                 reg.setC(microprograma.getC_addr());
                 reg.setAlu_op(microprograma.getAlu_op());
                 mm.setVar(microprograma.getRw());
+                reg.setId_registrador(microprograma.getId_micro());
             }
         
     }
@@ -504,11 +512,12 @@ public class App {//teste qualquer coisa da vida caralho
     
     private static void info_mc(){ /*menu microprograma*/
         limpaTela();
-        System.out.println("                            Micro_Programa");
-        System.out.println("========================================================================");
-        System.out.println("Id   'A'Addr    'B'Addr    ALU_Op     Switch_Pos     'C'Addr     RWAddr");
-        System.out.printf("%d\tR%-2d\t   R%d\t     %d \t\t  %d \t\tR%d\t   %d\n", 0,reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
-        System.out.println("========================================================================");
+
+        System.out.println("=====================================================");
+        System.out.println("id A Addr  B Addr  ALU Op  Switch Pos  C Addr   RWAddr");
+        System.out.printf("%s R%-2d\tR%d\t%d \t%d\t\tR%d\t%d\n", reg.getId_registrador(),reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
+        System.out.println("=====================================================");
+
        
     } 
     /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
@@ -548,5 +557,8 @@ public class App {//teste qualquer coisa da vida caralho
 
     private static void cria_dados_testes() throws MicroprogramaJaCadastradoException{
         inserir_micro_p(new Microprograma(3, 2, 1, 2, 0, 2));
+        inserir_micro_p(new Microprograma(2, 1, 1, 2, 0, 2));
+        inserir_micro_p(new Microprograma(1, 2, 1, 2, 0, 2));
+
     }
 }
