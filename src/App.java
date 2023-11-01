@@ -432,14 +432,16 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
                 case 4: main_memory(); limpaTela(); break;/* Selecionar para onde vai o valor contido na id de memoria */
                 case 5:  break;/*Saida para o menu inicial*/
                 
-                case 6: execute();break;
+                case 6: execute();
+                    
+                break;
                 case 0: remove_all(); break;
                 default: break;
             }
         } while (opcao != 5 );
     }
 
-    private static void execute(){
+    private static void execute(){//teste com falha
         List<Microprograma> microprogramas = getallMicroprogramas();
             for (Microprograma microprograma : microprogramas) {
                 reg.setA(microprograma.getA_addr());
@@ -448,8 +450,8 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
                 reg.setAlu_op(microprograma.getAlu_op());
                 mm.setVar(microprograma.getRw());
                 reg.setId_registrador(microprograma.getId_micro());
-            }
-        
+                reg.setar_valores(microprograma.getAlu_op(),microprograma.getA_addr(), microprograma.getB_addr(),microprograma.getC_addr());
+            } 
     }
     /*END MICRO_PROGRAMA*/
 
@@ -557,9 +559,9 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
     /*--> END FUNCOES MEMORY MAIN <--*/
 
     private static void cria_dados_testes() throws MicroprogramaJaCadastradoException{
-        inserir_micro_p(new Microprograma(3, 2, 1, 2, 0, 2));
-        inserir_micro_p(new Microprograma(2, 1, 1, 2, 0, 2));
-        inserir_micro_p(new Microprograma(1, 2, 1, 2, 0, 2));
+        inserir_micro_p(new Microprograma(3, 2, 1, 3, 0, 2));
+        //inserir_micro_p(new Microprograma(2, 1, 1, 0, 0, 2));
+        //inserir_micro_p(new Microprograma(1, 2, 1, 0, 0, 2));
 
     }
 }

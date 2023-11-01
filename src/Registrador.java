@@ -115,25 +115,27 @@ public class Registrador implements Serializable {
     select_reg(regDestino, valor);
     setAlu_op(0);
 }
+public void or_registros(int regDestino,int regis1, int regis2){
+    int valor = regis1 | regis2;
+    select_reg(regDestino, valor);
+    setAlu_op(1);
+  }
+   public void and_registros(int regDestino,int regis1, int regis2){
+    int valor = regis1 & regis2;
+    select_reg(regDestino, valor);
+    setAlu_op(2);
+  }
 
 
   public void sub_registros(int regDestino, int regis1, int regis2){
     int valor = regis1 - regis2;
     select_reg(regDestino, valor);
-    setAlu_op(4);
+    setAlu_op(3);
     
   }
 
-  public void and_registros(int regDestino,int regis1, int regis2){
-    int valor = regis1 & regis2;
-    select_reg(regDestino, valor);
-    setAlu_op(3);
-  }
-  public void or_registros(int regDestino,int regis1, int regis2){
-    int valor = regis1 | regis2;
-    select_reg(regDestino, valor);
-    setAlu_op(1);
-  }
+ 
+  
 
   public void removeValue(int regDestino) {
     select_reg(regDestino, 0);
@@ -180,6 +182,29 @@ public int retonar_reg(int regis) {
   public void setAlu_op(int alu_op) {
     this.alu_op = alu_op;
   }
+
+  public void setar_valores(int s_alu, int s_a_addr,int s_b_addr, int s_c_addr ){
+    switch (s_alu) {
+      case 0:
+            somar_registros(s_c_addr, s_a_addr, s_b_addr);
+        break;
+        case 1:
+            or_registros(s_c_addr, s_a_addr, s_b_addr);
+        break;
+        case 2:
+            and_registros(s_c_addr, s_a_addr, s_b_addr);
+        break;
+        case 3:
+            sub_registros(s_c_addr, s_a_addr, s_b_addr);
+        break;
+
+      default:
+
+        break;
+    }
+
+  }
+
 
 
  
