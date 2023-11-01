@@ -512,11 +512,11 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
     
     private static void info_mc(){ /*menu microprograma*/
         limpaTela();
-
-        System.out.println("=====================================================");
-        System.out.println("id A Addr  B Addr  ALU Op  Switch Pos  C Addr   RWAddr");
-        System.out.printf("%s R%-2d\tR%d\t%d \t%d\t\tR%d\t%d\n", reg.getId_registrador(),reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
-        System.out.println("=====================================================");
+        System.out.println("                            Micro Programa");
+        System.out.println("========================================================================");
+        System.out.println("id   'A' Addr   'B'Addr    ALU_Op    Switch_Pos     'C' Addr    RW_Addr");
+        System.out.printf("%s\tR%-2d\t   R%d\t     %d \t\t  %d\t\tR%d\t   %d\n", reg.getId_registrador(),reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
+        System.out.println("========================================================================");
 
        
     } 
