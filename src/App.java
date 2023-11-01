@@ -31,6 +31,7 @@ public class App {//teste qualquer coisa da vida caralho
 
     // chamada de Projetokaise
     // private static Projetokaiesi facade;
+    //teste
 
     private static Scanner scanner = new Scanner(System.in);
     private static Registrador reg = new Registrador(20, 30, 50, 1);
