@@ -232,6 +232,7 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
 
                     break;
                 default:
+                    limpaTela();
                     break;
             }
         } while (opcao != 5);
