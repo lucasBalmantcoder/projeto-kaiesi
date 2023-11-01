@@ -40,7 +40,6 @@ public class App {//teste qualquer coisa da vida caralho
     private static List<Microprograma>microprogramas = new ArrayList<>();
     private static idGeneratorStrategy index = new SequencialContaIdGeneratorStrategy();
 
-
     public static void main(String[] args)  {
 
         try {
@@ -91,19 +90,26 @@ public class App {//teste qualquer coisa da vida caralho
         System.out.println("Programa terminado");
     }
 
-    private static void inserir_micro_p(Microprograma microprograma) throws MicroprogramaJaCadastradoException {
-            if (microprograma.getId_micro() == null) {
-                microprograma.setId_micro(index.nextId());
-            }
-        
-            try {
-                buscar_micro_programa(microprograma.getId_micro());
-                throw new MicroprogramaJaCadastradoException();
-                
-            } catch (MicroprogramaNaoCadastradoException e) {
-                microprogramas.add(microprograma);
-            }
-        }
+    
+
+private static void inserir_micro_p(Microprograma microprograma) throws MicroprogramaJaCadastradoException {
+
+    if (microprogramas.size() >= 3) {
+        System.out.println("Limite de 6 elementos atingido. Não é possível adicionar mais elementos.");
+        return; // Saia do método, pois o limite foi atingido
+    }
+
+    if (microprograma.getId_micro() == null) {
+        microprograma.setId_micro(index.nextId());
+    }
+
+    try {
+        buscar_micro_programa(microprograma.getId_micro());
+        throw new MicroprogramaJaCadastradoException();
+    } catch (MicroprogramaNaoCadastradoException e) {
+        microprogramas.add(microprograma);
+    }
+}
     
         private static Microprograma buscar_micro_programa(String id_microprograma) throws MicroprogramaNaoCadastradoException {
             for (Microprograma microprograma : microprogramas) {
@@ -439,6 +445,7 @@ public class App {//teste qualquer coisa da vida caralho
                 reg.setC(microprograma.getC_addr());
                 reg.setAlu_op(microprograma.getAlu_op());
                 mm.setVar(microprograma.getRw());
+                reg.setId_registrador(microprograma.getId_micro());
             }
         
     }
@@ -505,7 +512,7 @@ public class App {//teste qualquer coisa da vida caralho
         limpaTela();
         System.out.println("=====================================================");
         System.out.println("id A Addr  B Addr  ALU Op  Switch Pos  C Addr   RWAddr");
-        System.out.printf("%d R%-2d\tR%d\t%d \t%d\t\tR%d\t%d\n", 0,reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
+        System.out.printf("%s R%-2d\tR%d\t%d \t%d\t\tR%d\t%d\n", reg.getId_registrador(),reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
         System.out.println("=====================================================");
        
     } 
@@ -546,5 +553,8 @@ public class App {//teste qualquer coisa da vida caralho
 
     private static void cria_dados_testes() throws MicroprogramaJaCadastradoException{
         inserir_micro_p(new Microprograma(3, 2, 1, 2, 0, 2));
+        inserir_micro_p(new Microprograma(2, 1, 1, 2, 0, 2));
+        inserir_micro_p(new Microprograma(1, 2, 1, 2, 0, 2));
+
     }
 }
