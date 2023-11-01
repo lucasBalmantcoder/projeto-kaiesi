@@ -19,10 +19,13 @@
  * **/
 
 //TODOS OS IMPORT'S DEVEM SER FEITOS AQUI.
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList;
-//import facade.Projetokaiesi;
+
+import exceptions.MicroprogramaJaCadastradoException;
+import exceptions.MicroprogramaNaoCadastradoException;
+
 
 public class App {//teste qualquer coisa da vida caralho
 
@@ -32,11 +35,21 @@ public class App {//teste qualquer coisa da vida caralho
     private static Scanner scanner = new Scanner(System.in);
     private static Registrador reg = new Registrador(20, 30, 50, 1);
     private static Memory_main mm = new Memory_main(5, 4, 3, 2, 0);
+
     
-    private List<Microprograma>lista_micro = new ArrayList<>();//lista de objetos
+    private static List<Microprograma>microprogramas = new ArrayList<>();
+    private static idGeneratorStrategy index = new SequencialContaIdGeneratorStrategy();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+
+        try {
+            cria_dados_testes();
+        } catch (MicroprogramaJaCadastradoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         try {
             System.out.println("Carregando o sistema...");
 
@@ -63,7 +76,7 @@ public class App {//teste qualquer coisa da vida caralho
                 switch (opcao) {
                     case 0: limpaTela(); break;
                     case 1: data_path(); break;
-                    case 2: microprograma_memory(); break;
+                    case 2: micro_program();; break;
                     case 3: main_memory(); break;
                     case 4: goto_ula(); break;
                     default: break;
@@ -77,6 +90,75 @@ public class App {//teste qualquer coisa da vida caralho
         }
         System.out.println("Programa terminado");
     }
+
+    private static void inserir_micro_p(Microprograma microprograma) throws MicroprogramaJaCadastradoException {
+            if (microprograma.getId_micro() == null) {
+                microprograma.setId_micro(index.nextId());
+            }
+        
+            try {
+                buscar_micro_programa(microprograma.getId_micro());
+                throw new MicroprogramaJaCadastradoException();
+                
+            } catch (MicroprogramaNaoCadastradoException e) {
+                microprogramas.add(microprograma);
+            }
+        }
+    
+        private static Microprograma buscar_micro_programa(String id_microprograma) throws MicroprogramaNaoCadastradoException {
+            for (Microprograma microprograma : microprogramas) {
+                if (microprograma.getId_micro().equals(id_microprograma)) {
+                    return microprograma;
+                }
+            }
+        
+            
+            throw new MicroprogramaNaoCadastradoException();
+        }
+
+        
+        private static void removerMaiorIndice() {
+            int maiorIndice = -1; // Inicializa com um valor impossível de ser um índice válido
+            Microprograma microprogramaComMaiorIndice = null;
+        
+            for (Microprograma microprograma : microprogramas) {
+                String idMicro = microprograma.getId_micro();
+                if (idMicro != null) {
+                    int indice = Integer.parseInt(idMicro); // Converte o ID para um número
+                    if (indice > maiorIndice) {
+                        maiorIndice = indice; // Atualiza o maior índice encontrado
+                        microprogramaComMaiorIndice = microprograma; // Atualiza o Microprograma correspondente
+                    }
+                }
+            }
+        
+            if (microprogramaComMaiorIndice != null) {
+                microprogramaComMaiorIndice.setId_micro(index.antId());
+                microprogramas.remove(microprogramaComMaiorIndice); // Remove o Microprograma com o maior índice
+                
+            }
+        }
+
+        private static void remove_all() {
+            for (Microprograma microprograma : microprogramas) {
+                String idMicro = microprograma.getId_micro();
+                if (idMicro != null) {
+                    int indice = Integer.parseInt(idMicro);
+                    if (indice >= 0) {
+                        microprograma.setId_micro(index.antId()); // Define o índice como zero
+                    }
+                }
+            }
+            
+            microprogramas.clear(); // Remove todos os elementos da lista
+        }
+        
+
+        private static List<Microprograma> getallMicroprogramas() {
+            return new ArrayList<>(microprogramas);
+        }
+
+        
 
     // Esse metodo nao limpa a tela, ele so imprime varios espacos na tela.
     private static void limpaTela() {
@@ -295,7 +377,7 @@ public class App {//teste qualquer coisa da vida caralho
                 case 1: add_mm(); break; /* add valor especifico no mm */
                 case 2: remove_mm(); break; /* remover valor especifico no mm */
                 case 3: goto_ula(); limpaTela(); break;/* direto para ULA */
-                case 4: select_reg0_re1_reg2_reg3(); limpaTela(); break;/* Selecionar para onde vai o valor contido na id de memoria */
+                case 4: select_regis(); limpaTela(); break;/* Selecionar para onde vai o valor contido na id de memoria */
                 case 5: menu_ini(); break;/*Saida para o menu inicial*/
                 case 6: select_c(); limpaTela(); break;
                 case 0: mm.remove_all(); limpaTela(); break;
@@ -303,6 +385,65 @@ public class App {//teste qualquer coisa da vida caralho
             }
         } while (opcao != 5);
     }
+
+    private static void micro_program() {
+        limpaTela();
+        int opcao;
+        do {
+            limpaTela();
+            info_mc();
+            List<Microprograma> microprogramas = getallMicroprogramas();
+            for (Microprograma microprograma : microprogramas) {
+                System.out.printf("%s  R%d\tR%d\t%d \t%d\t\tR%d\t%d\n", microprograma.getId_micro(),microprograma.getA_addr(), microprograma.getB_addr(), microprograma.getAlu_op(), 0,microprograma.getC_addr(),microprograma.getRw());
+            }
+       
+            mc_confis_01();
+
+            try {
+                opcao = Integer.valueOf(scanner.nextLine());
+
+            } catch (Exception e) {
+                opcao = 0;
+            }
+
+            switch (opcao) {
+                case 1: 
+                     Microprograma microprograma = new Microprograma(reg.getA(), reg.getB(), reg.getC(), reg.getAlu_op(), 0, mm.getVar());
+                     try {
+                        inserir_micro_p(microprograma);
+                    } catch (MicroprogramaJaCadastradoException e) {
+                      
+                        e.printStackTrace();
+                    }
+                    break; 
+                case 2:
+                    removerMaiorIndice();
+                break; 
+                case 3: goto_ula(); limpaTela(); break;
+
+                case 4: main_memory(); limpaTela(); break;/* Selecionar para onde vai o valor contido na id de memoria */
+                case 5:  break;/*Saida para o menu inicial*/
+                
+                case 6: execute();break;
+                case 0: remove_all(); break;
+                default: break;
+            }
+        } while (opcao != 5 );
+    }
+
+    private static void execute(){
+        List<Microprograma> microprogramas = getallMicroprogramas();
+            for (Microprograma microprograma : microprogramas) {
+                reg.setA(microprograma.getA_addr());
+                reg.setB(microprograma.getB_addr());
+                reg.setC(microprograma.getC_addr());
+                reg.setAlu_op(microprograma.getAlu_op());
+                mm.setVar(microprograma.getRw());
+            }
+        
+    }
+
+
     /*--> END MEMORY MAIN FUNCTION <--*/
 
     /*--> START MENUS DO DAS FUNCOES PRINCIPAIS <--*/
@@ -329,19 +470,23 @@ public class App {//teste qualquer coisa da vida caralho
         System.out.printf("Escolha uma opcao:");
     }
 
+     private static void mc_confis_01() { /*microprograma, as opcoes de escolha, apenas print*/
+        System.out.println("===================================================");
+        System.out.println("Press <1> save mc           Press <2> to remove mc");
+        System.out.println("Press <3> go to ULA         Press <0> to remove all");
+        System.out.println("Press <4> go to mm          Press <6> Execute");
+        System.out.println("Press <5> to exit           ");
+        System.out.printf("Escolha uma opcao:");
+    }
+
     private static void menu_ini() { /*banco de registro, ele atualiza de acordo com que tem*/
         System.out.println("                   Register Bank");
         System.out.println("C bus andress       A bus andress       B bus andress");
         System.out.println("=====================================================");
         System.out.printf(
                 "R%d = %d\t\t    R%d = %d\t\tR%d = %d\n", reg.getC(), reg
-                        .retonar_reg(reg.getC()),
-                reg.getA(), reg.retonar_reg(reg.getA()), reg.getB(), reg.retonar_reg(reg.getB()));/*
-                                                                                                   * funcionando o
-                                                                                                   * setamento de
-                                                                                                   * valores em 'A' e
-                                                                                                   * 'B'
-                                                                                                   */
+                .retonar_reg(reg.getC()),reg.getA(), reg.retonar_reg(reg.getA()),
+                 reg.getB(), reg.retonar_reg(reg.getB()));//funcionando o setamento de A e B
         System.out.println("=====================================================");
         info_regis();
 
@@ -356,14 +501,13 @@ public class App {//teste qualquer coisa da vida caralho
     }
     
     
-    private static void microprograma_memory(){ /*menu microprograma*/
+    private static void info_mc(){ /*menu microprograma*/
         limpaTela();
-        String[] s = { "(+)", "(-)", "(and)", "(or)" };
-        System.out.println("========================================================================");
-        System.out.println("A Addr:     B Addr:     ALU Op:     Switch Pos:     C Addr:     RW Addr: ");
-        System.out.printf("  R%d\t      R%d\t  %s\t\t\t\tR%d\tRW%d\n", reg.getA(), reg.getB(), s[reg.getSel()], reg.getC(),mm.getVar());
-        System.out.println("========================================================================");
-        int i = scanner.nextInt();
+        System.out.println("=====================================================");
+        System.out.println("id A Addr  B Addr  ALU Op  Switch Pos  C Addr   RWAddr");
+        System.out.printf("%d R%-2d\tR%d\t%d \t%d\t\tR%d\t%d\n", 0,reg.getA(), reg.getB(), reg.getAlu_op(), 0,reg.getC(),mm.getVar());
+        System.out.println("=====================================================");
+       
     } 
     /*--> END MENUS DO DAS FUNCOES PRINCIPAIS <--*/
 
@@ -386,7 +530,7 @@ public class App {//teste qualquer coisa da vida caralho
         limpaTela();
     }
 
-    private static void select_reg0_re1_reg2_reg3() {/*Selecionar o registrador para setar o valor de (id) memoria*/
+    private static void select_regis() {/*Selecionar o registrador para setar o valor de (id) memoria*/
         int var;
         do{
             System.out.println("Digite M0(0), M1(1), M2(2) ou M3(3), M4(4): ");
@@ -399,4 +543,8 @@ public class App {//teste qualquer coisa da vida caralho
             reg.select_reg(mm_to_reg, r);
     }
     /*--> END FUNCOES MEMORY MAIN <--*/
+
+    private static void cria_dados_testes() throws MicroprogramaJaCadastradoException{
+        inserir_micro_p(new Microprograma(3, 2, 1, 2, 0, 2));
+    }
 }

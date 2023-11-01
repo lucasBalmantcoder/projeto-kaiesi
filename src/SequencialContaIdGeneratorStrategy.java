@@ -13,7 +13,13 @@ public class SequencialContaIdGeneratorStrategy implements idGeneratorStrategy, 
     public String nextId() { //adiciana o proximo idex para o prox_num + 1
         return String.valueOf(prox_num++);
     }
+
+    public String antId(){
+        return String.valueOf(prox_num--);
+    }
+
+    
+    
     
 }
-//teste
-//teste
+

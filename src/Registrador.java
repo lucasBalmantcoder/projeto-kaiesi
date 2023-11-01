@@ -13,6 +13,7 @@ public class Registrador implements Serializable {
   private int b = 0;
   private int c = 0;
   private int sel = 0;
+  private int alu_op;
   
   
   //private boolean bloqueado; vou fazer um m?todo para retorna se
@@ -25,6 +26,7 @@ public class Registrador implements Serializable {
     this.regis_1 = regis_1;
     this.regis_2 = regis_2;
     this.regis_3 = regis_3;
+    this.alu_op = 0;
   }
 
 
@@ -111,25 +113,31 @@ public class Registrador implements Serializable {
   public void somar_registros(int regDestino, int regis1, int regis2) {
     int valor = regis1 + regis2;
     select_reg(regDestino, valor);
+    setAlu_op(0);
 }
 
 
   public void sub_registros(int regDestino, int regis1, int regis2){
     int valor = regis1 - regis2;
     select_reg(regDestino, valor);
+    setAlu_op(4);
+    
   }
 
   public void and_registros(int regDestino,int regis1, int regis2){
     int valor = regis1 & regis2;
     select_reg(regDestino, valor);
+    setAlu_op(3);
   }
   public void or_registros(int regDestino,int regis1, int regis2){
     int valor = regis1 | regis2;
     select_reg(regDestino, valor);
+    setAlu_op(1);
   }
 
   public void removeValue(int regDestino) {
     select_reg(regDestino, 0);
+    
 }
 
 //setar valores e add em algum registrador
@@ -163,6 +171,15 @@ public int retonar_reg(int regis) {
     }
     return a;
 }
+
+//implementação do caos
+  public int getAlu_op() {
+    return this.alu_op;
+  }
+
+  public void setAlu_op(int alu_op) {
+    this.alu_op = alu_op;
+  }
 
 
  

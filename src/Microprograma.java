@@ -2,6 +2,7 @@ import java.io.Serializable;
 //versao ninbus
 public class Microprograma implements Serializable {
 
+    private String id_micro;
     private int b_addr;
     private int a_addr;
     private int c_addr;
@@ -17,6 +18,18 @@ public class Microprograma implements Serializable {
         this.s_pos = 0;
         this.rw = 0;
     }
+
+
+    public Microprograma( int b_addr, int a_addr, int c_addr, int alu_op, int s_pos, int rw) {
+
+        this.b_addr = b_addr;
+        this.a_addr = a_addr;
+        this.c_addr = c_addr;
+        this.alu_op = alu_op;
+        this.s_pos = s_pos;
+        this.rw = rw;
+    }
+
     
     public int getB_addr() {
         return b_addr;
@@ -85,6 +98,14 @@ public class Microprograma implements Serializable {
 
     public void set_conf_rw(){
         setRw(rw);
+    }
+
+    public String getId_micro() {
+        return this.id_micro;
+    }
+
+    public void setId_micro(String id_micro) {
+        this.id_micro = id_micro;
     }
     
 

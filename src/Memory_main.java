@@ -7,6 +7,7 @@ public class Memory_main implements Serializable {
     private int m_3 = 0;
     private int m_4 = 0;
     private int var = 0;
+    private boolean a_mm = false;//acesso a memoria 
 
     public Memory_main(int m_0, int m_1, int m_2, int m_3, int m_4) {
         this.m_0 = m_0;
@@ -108,8 +109,21 @@ public class Memory_main implements Serializable {
         return value;
 
     }
-    //public int retorno_mm(int var) {
-        
-    //}
+
+
+    public boolean isA_mm() {
+        return this.a_mm;
+    }
+
+    public boolean getA_mm() {
+        return this.a_mm;
+    }
+
+    public void setA_mm(boolean a_mm) {
+        this.a_mm = a_mm;
+    }
+    
+
+    
 
 }
