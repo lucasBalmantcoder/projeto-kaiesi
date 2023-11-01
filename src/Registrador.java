@@ -174,7 +174,7 @@ public int retonar_reg(int regis) {
     return a;
 }
 
-//implementação do caos
+//implementaï¿½ï¿½o do caos
   public int getAlu_op() {
     return this.alu_op;
   }

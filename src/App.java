@@ -442,15 +442,17 @@ private static void inserir_micro_p(Microprograma microprograma) throws Micropro
     }
 
     private static void execute(){//teste com falha
-        List<Microprograma> microprogramas = getallMicroprogramas();
+        List<Microprograma> microprogramas = getallMicroprogramas(); 
             for (Microprograma microprograma : microprogramas) {
-                reg.setA(microprograma.getA_addr());
-                reg.setB(microprograma.getB_addr());
+                //microprograma.setA_addr(reg.getRegis_0());
+                // reg.retonar_reg(microprograma.getA_addr()))
+                //microprograma.setB_addr(reg.getB());
                 reg.setC(microprograma.getC_addr());
                 reg.setAlu_op(microprograma.getAlu_op());
                 mm.setVar(microprograma.getRw());
-                reg.setId_registrador(microprograma.getId_micro());
-                reg.setar_valores(microprograma.getAlu_op(),microprograma.getA_addr(), microprograma.getB_addr(),microprograma.getC_addr());
+                //reg.setId_registrador(microprograma.getId_micro());
+                //reg.setar_valores();
+                reg.setar_valores(microprograma.getAlu_op(),microprograma.getA_addr(),microprograma.getB_addr(),microprograma.getC_addr());
             } 
     }
     /*END MICRO_PROGRAMA*/
