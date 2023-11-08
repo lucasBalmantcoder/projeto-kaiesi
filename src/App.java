@@ -76,7 +76,7 @@ public class App {//teste qualquer coisa da vida caralho
                 switch (opcao) {
                     case 0: limpaTela(); break;
                     case 1: data_path(); break;
-                    case 2: micro_program();; break;
+                    case 2: /*micro_program()*/break;
                     case 3: main_memory(); break;
                     case 4: goto_ula(); break;
                     default: break;
